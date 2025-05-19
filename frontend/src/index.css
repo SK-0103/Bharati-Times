@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 480px;
+}
+
+:root {
+  --font-family: 'Tajawal', sans-serif; /* Default to English font */
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-family);
+}
+
+.sidecard-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 4; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word; 
+  line-clamp: 4;          
+  box-orient: vertical; 
+}
+
+.midcard-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word; 
+  line-clamp: 2;          
+  box-orient: vertical; 
+}
+
+.midcard-para {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word; 
+  line-clamp: 3;          
+  box-orient: vertical; 
+}
+
+.smallcard-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word; 
+  line-clamp: 3;          
+  box-orient: vertical; 
+}
+
+.bigcard-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word; 
+  line-clamp: 3;          
+  box-orient: vertical; 
+}
+
+.bigcard-para {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word; 
+  line-clamp: 2;          
+  box-orient: vertical; 
+}

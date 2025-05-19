@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "archives",
+  "info": {
+    "singularName": "archive",
+    "pluralName": "archives",
+    "displayName": "Archive",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "englishTitle": {
+      "type": "string",
+      "required": true
+    },
+    "englishPdfLink": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    },
+    "hindiTitle": {
+      "type": "string",
+      "required": true
+    },
+    "hindiPdfLink": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "englishTitle": {
+      "type": "string",
+      "required": true
+    },
+    "coverImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "englishAuthor": {
+      "type": "string",
+      "required": true
+    },
+    "englishBody": {
+      "type": "richtext",
+      "required": true
+    },
+    "timeToRead": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "isBreakingNews": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "isTopStory": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "National",
+        "International",
+        "Technology",
+        "Business",
+        "Education",
+        "Lifestyle",
+        "Entertainment",
+        "Sports"
+      ],
+      "required": true,
+      "default": "National"
+    },
+    "hindiTitle": {
+      "type": "string",
+      "required": true
+    },
+    "hindiAuthor": {
+      "type": "string",
+      "required": true
+    },
+    "hindiBody": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
