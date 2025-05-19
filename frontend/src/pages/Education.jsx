@@ -17,14 +17,24 @@ const Education = () => {
   const { language } = useLanguage();
 
   const { loading, error, data } = useFetch(
-    `${import.meta.env.VITE_API_URL}/api/articles/category/Education`
+    `/api/articles/category/Education`
   );
 
   const {
     loading: allLoading,
     error: allError,
     data: allArticles,
-  } = useFetch(`${import.meta.env.VITE_API_URL}/api/articles`);
+  } = useFetch(`/api/articles`);
+
+  // Log any errors that occur
+  useEffect(() => {
+    if (error) {
+      console.error('Education articles fetch error:', error);
+    }
+    if (allError) {
+      console.error('All articles fetch error:', allError);
+    }
+  }, [error, allError]);
 
   let shuffledArticles = [];
   if (allArticles) {
@@ -66,7 +76,13 @@ const Education = () => {
   }
 
   if (error || allError) {
-    return <Error message={translations[language].errorMessage} />;
+    const errorMessage = error 
+      ? `Error loading education articles: ${error.message}`
+      : allError 
+      ? `Error loading all articles: ${allError.message}`
+      : translations[language].errorMessage;
+    
+    return <Error message={errorMessage} />;
   }
 
   return (
