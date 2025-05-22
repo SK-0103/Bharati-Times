@@ -55,22 +55,26 @@ const SideCard = ({ article }) => {
       : `${timeToRead} min read`;
 
   return (
-    <div className="rounded-lg flex gap-3 overflow-hidden bg-white">
-      {/* Article Details */}
-      <div className="flex flex-col justify-center gap-1 w-1/2">
-        <div className="flex flex-col xs:inline md:flex text-sm text-gray-600">
+    <Link
+      to={`/article/${id}`}
+      className="flex flex-col gap-3 group transition-all duration-300 hover:translate-y-[-4px]"
+    >
+      <div className="relative w-full h-48 overflow-hidden rounded-lg">
+        <img
+          src={coverImageUrl}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
+      <div className="flex flex-col gap-1">
+        <h3 className="text-lg font-medium line-clamp-2 group-hover:text-blue-600 transition-colors duration-200">
+          {title}
+        </h3>
+        <div className="flex items-center gap-2 text-sm text-gray-600">
           <span>{author || "Unknown Author"}</span>
-          <span className="hidden xs:inline md:hidden"> | </span>
+          <span>•</span>
           <span>{formattedcreatedAt}</span>
         </div>
-
-        <Link
-          to={`/article/${id}`}
-          className="text-base font-medium sidecard-title hover:underline"
-        >
-          {title}
-        </Link>
-
         <div className="flex flex-col xs:inline md:flex xl:inline text-sm text-gray-600">
           <span className="text-red-700 font-medium ">
             {translations[language][category]}
@@ -79,18 +83,7 @@ const SideCard = ({ article }) => {
           <span className="">{readingTimeText}</span>
         </div>
       </div>
-
-      {/* Article Image */}
-      <div className="w-1/2 relative overflow-hidden rounded-lg">
-        <Link to={`/article/${id}`}>
-          <img
-            src={coverImageUrl}
-            className="w-full object-cover h-full rounded-lg transform transition-transform duration-500 hover:scale-110"
-            alt={title}
-          />
-        </Link>
-      </div>
-    </div>
+    </Link>
   );
 };
 

@@ -5,7 +5,18 @@
 }
 
 :root {
-  --font-family: 'Tajawal', sans-serif; /* Default to English font */
+  --font-family: 'Tajawal', sans-serif;
+  --primary-color: #1a365d;
+  --secondary-color: #2d3748;
+  --accent-color: #4299e1;
+  --text-primary: #2d3748;
+  --text-secondary: #4a5568;
+  --background-light: #f7fafc;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --transition-base: all 0.3s ease;
+  --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -16,70 +27,350 @@
 
 body {
   font-family: var(--font-family);
+  color: var(--text-primary);
+  background-color: var(--background-light);
+  line-height: 1.6;
+}
+
+/* Category Page Transitions */
+.category-page {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-smooth);
+}
+
+.category-page.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.category-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: var(--transition-smooth);
+}
+
+.category-section.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animations for sections */
+.category-section:nth-child(1) { transition-delay: 0.1s; }
+.category-section:nth-child(2) { transition-delay: 0.2s; }
+.category-section:nth-child(3) { transition-delay: 0.3s; }
+.category-section:nth-child(4) { transition-delay: 0.4s; }
+.category-section:nth-child(5) { transition-delay: 0.5s; }
+
+/* Loading Skeleton Animation */
+.skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    var(--background-light) 25%,
+    #e2e8f0 50%,
+    var(--background-light) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Rich Text Content Styles */
+.rich-text-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.rich-text-content p {
+  margin-bottom: 1.5rem;
+}
+
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3,
+.rich-text-content h4,
+.rich-text-content h5,
+.rich-text-content h6 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+.rich-text-content h1 { font-size: 2.25rem; }
+.rich-text-content h2 { font-size: 1.875rem; }
+.rich-text-content h3 { font-size: 1.5rem; }
+.rich-text-content h4 { font-size: 1.25rem; }
+.rich-text-content h5 { font-size: 1.125rem; }
+.rich-text-content h6 { font-size: 1rem; }
+
+.rich-text-content ul,
+.rich-text-content ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.rich-text-content ul {
+  list-style-type: disc;
+}
+
+.rich-text-content ol {
+  list-style-type: decimal;
+}
+
+.rich-text-content li {
+  margin-bottom: 0.5rem;
+}
+
+.rich-text-content blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--accent-color);
+  background-color: var(--background-light);
+  font-style: italic;
+}
+
+.rich-text-content a {
+  color: var(--accent-color);
+  text-decoration: underline;
+  transition: var(--transition-base);
+}
+
+.rich-text-content a:hover {
+  color: var(--primary-color);
+}
+
+.rich-text-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem 0;
+  border-radius: 0.5rem;
+}
+
+.rich-text-content code {
+  background-color: var(--background-light);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.875em;
+}
+
+.rich-text-content pre {
+  background-color: var(--background-light);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.rich-text-content pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.rich-text-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.rich-text-content th,
+.rich-text-content td {
+  padding: 0.75rem;
+  border: 1px solid #e2e8f0;
+}
+
+.rich-text-content th {
+  background-color: var(--background-light);
+  font-weight: 600;
+}
+
+.rich-text-content hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Card Styles */
+.card {
+  transition: var(--transition-base);
+  border-radius: 0.5rem;
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Title Styles */
+.sidecard-title,
+.midcard-title,
+.smallcard-title,
+.bigcard-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  color: var(--text-primary);
+  font-weight: 600;
+  transition: var(--transition-base);
 }
 
 .sidecard-title {
-  display: -webkit-box;
-  -webkit-line-clamp: 4; 
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word; 
-  line-clamp: 4;          
-  box-orient: vertical; 
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  font-size: 1.1rem;
 }
 
 .midcard-title {
-  display: -webkit-box;
-  -webkit-line-clamp: 2; 
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word; 
-  line-clamp: 2;          
-  box-orient: vertical; 
-}
-
-.midcard-para {
-  display: -webkit-box;
-  -webkit-line-clamp: 3; 
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word; 
-  line-clamp: 3;          
-  box-orient: vertical; 
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  font-size: 1.25rem;
 }
 
 .smallcard-title {
-  display: -webkit-box;
-  -webkit-line-clamp: 3; 
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word; 
-  line-clamp: 3;          
-  box-orient: vertical; 
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  font-size: 1rem;
 }
 
 .bigcard-title {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  font-size: 1.5rem;
+}
+
+/* Paragraph Styles */
+.midcard-para,
+.bigcard-para {
   display: -webkit-box;
-  -webkit-line-clamp: 3; 
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  word-wrap: break-word; 
-  line-clamp: 3;          
-  box-orient: vertical; 
+  word-wrap: break-word;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.midcard-para {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
 }
 
 .bigcard-para {
-  display: -webkit-box;
-  -webkit-line-clamp: 2; 
-  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+/* Button Styles */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+/* Navigation Styles */
+.nav-link {
+  color: var(--text-primary);
+  transition: var(--transition-base);
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--accent-color);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-color);
+  transition: var(--transition-base);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bigcard-title {
+    font-size: 1.25rem;
+  }
+  
+  .midcard-title {
+    font-size: 1.1rem;
+  }
+  
+  .sidecard-title {
+    font-size: 1rem;
+  }
+
+  .rich-text-content {
+    font-size: 1rem;
+  }
+
+  .rich-text-content h1 { font-size: 1.875rem; }
+  .rich-text-content h2 { font-size: 1.5rem; }
+  .rich-text-content h3 { font-size: 1.25rem; }
+  .rich-text-content h4 { font-size: 1.125rem; }
+  .rich-text-content h5 { font-size: 1rem; }
+  .rich-text-content h6 { font-size: 0.875rem; }
+}
+
+/* Loading Animation */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}
+
+/* Image Styles */
+.img-container {
   overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word; 
-  line-clamp: 2;          
-  box-orient: vertical; 
+  border-radius: 0.5rem;
+}
+
+.img-container img {
+  transition: var(--transition-base);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.img-container:hover img {
+  transform: scale(1.05);
 }

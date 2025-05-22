@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { Link } from "react-router-dom";
 import useLanguage from "../context/useLanguage";
@@ -16,10 +16,24 @@ import BreakingSlider from "../components/BreakingSlider";
 
 const Home = () => {
   const { language } = useLanguage();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isContentLoaded, setIsContentLoaded] = useState(false);
 
   const { loading, error, data } = useFetch(
     '/api/articles'
   );
+
+  useEffect(() => {
+    if (!loading && data) {
+      const timer = setTimeout(() => {
+        setIsLoaded(true);
+        setTimeout(() => {
+          setIsContentLoaded(true);
+        }, 100);
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [loading, data]);
 
   const filterArticlesByCategory = (category) => {
     const sortedArticles = Array.isArray(data)
@@ -44,7 +58,23 @@ const Home = () => {
   }, []);
 
   if (loading) {
-    return <Loading message={translations[language].pleaseWait} />;
+    return (
+      <div className="category-page">
+        <div className="flex flex-col gap-8 md:gap-10">
+          <div className="skeleton-loading h-8 w-48 rounded"></div>
+          <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="skeleton-loading h-64 rounded-lg"></div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="skeleton-loading h-48 rounded-lg"></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
@@ -53,13 +83,13 @@ const Home = () => {
   }
 
   return (
-    <>
+    <div className={`category-page ${isLoaded ? 'loaded' : ''}`}>
       <div className="!mt-4">
         <BreakingSlider articles={data} />
       </div>
       <div className="flex gap-4 !px-3 lg:!px-6 !py-10 bg-white">
         <main className="flex flex-col gap-8 md:gap-10">
-          <section className="flex flex-col md:flex-row md:items-center gap-10">
+          <section className={`category-section ${isContentLoaded ? 'loaded' : ''} flex flex-col md:flex-row md:items-center gap-10`}>
             <div className="w-full md:w-3/5">
               <AdSlider />
             </div>
@@ -68,7 +98,7 @@ const Home = () => {
             </div>
           </section>
 
-          <section className="flex flex-col md:flex-row gap-10">
+          <section className={`category-section ${isContentLoaded ? 'loaded' : ''} flex flex-col md:flex-row gap-10`}>
             <div className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-5">
               <div className="flex justify-between items-center">
                 <h2 className="text-xl font-medium">
@@ -77,7 +107,7 @@ const Home = () => {
               </div>
               <a
                 href="/currentissue"
-                className="bg-white hover:bg-gray-100 border border-gray-400 rounded-2xl !p-4 flex flex-col gap-3"
+                className="bg-white hover:bg-gray-100 border border-gray-400 rounded-2xl !p-4 flex flex-col gap-3 transition-all duration-300 hover:shadow-lg"
               >
                 <img
                   loading="lazy"
@@ -131,7 +161,7 @@ const Home = () => {
                   .map((article, index) => (
                     <div
                       key={article.id}
-                      className={index === 2 ? "hidden lg:block" : ""}
+                      className={`${index === 2 ? "hidden lg:block" : ""} transition-all duration-300 hover:transform hover:scale-105`}
                     >
                       <MidCard article={article} />
                     </div>
@@ -140,7 +170,7 @@ const Home = () => {
             </div>
           </section>
 
-          <section className="flex flex-col lg:flex-row gap-10">
+          <section className={`category-section ${isContentLoaded ? 'loaded' : ''} flex flex-col md:flex-row gap-10`}>
             {/* International News */}
             <div className="flex flex-col gap-5">
               <div className="flex justify-between items-center">
@@ -174,18 +204,22 @@ const Home = () => {
                 {filterArticlesByCategory("International")
                   .slice(0, 3)
                   .map((article) => (
-                    <SmallCard key={article.id} article={article} />
+                    <div key={article.id} className="transition-all duration-300 hover:transform hover:scale-105">
+                      <SmallCard article={article} />
+                    </div>
                   ))}
               </div>
               <div className="grid grid-cols-1 xs:grid-cols-2 md:hidden gap-5">
                 {filterArticlesByCategory("International")
                   .slice(0, 2)
                   .map((article) => (
-                    <SmallCard key={article.id} article={article} />
+                    <div key={article.id} className="transition-all duration-300 hover:transform hover:scale-105">
+                      <SmallCard article={article} />
+                    </div>
                   ))}
               </div>
             </div>
-            {/* Technology News */}
+            
             <div className="flex flex-col gap-5">
               <div className="flex justify-between items-center">
                 <h2 className="text-xl font-medium">
@@ -215,20 +249,24 @@ const Home = () => {
                 {filterArticlesByCategory("Technology")
                   .slice(0, 3)
                   .map((article) => (
-                    <SmallCard key={article.id} article={article} />
+                    <div key={article.id} className="transition-all duration-300 hover:transform hover:scale-105">
+                      <SmallCard article={article} />
+                    </div>
                   ))}
               </div>
               <div className="grid grid-cols-1 xs:grid-cols-2 md:hidden gap-5">
                 {filterArticlesByCategory("Technology")
                   .slice(0, 2)
                   .map((article) => (
-                    <SmallCard key={article.id} article={article} />
+                    <div key={article.id} className="transition-all duration-300 hover:transform hover:scale-105">
+                      <SmallCard article={article} />
+                    </div>
                   ))}
               </div>
             </div>
           </section>
 
-          <section className="flex flex-col lg:flex-row md:items-start gap-10">
+          <section className={`category-section ${isContentLoaded ? 'loaded' : ''} flex flex-col lg:flex-row gap-10`}>
             {/* Business News */}
             <div className="w-full lg:w-3/5 flex flex-col gap-8 md:gap-5">
               <div className="flex justify-between items-center">
@@ -255,11 +293,11 @@ const Home = () => {
                   </Link>
                 </div>
               </div>
-              {
+              <div className="transition-all duration-300 hover:transform hover:scale-105">
                 <FullCard
                   articles={filterArticlesByCategory("Business").slice(0, 5)}
                 />
-              }
+              </div>
             </div>
             {/* Education News */}
             <div className="w-full lg:w-2/5">
@@ -292,14 +330,16 @@ const Home = () => {
                   {filterArticlesByCategory("Education")
                     .slice(0, 2)
                     .map((article) => (
-                      <SideCard key={article.id} article={article} />
+                      <div key={article.id} className="transition-all duration-300 hover:transform hover:scale-105">
+                        <SideCard article={article} />
+                      </div>
                     ))}
                 </div>
               </div>
             </div>
           </section>
 
-          <section className="flex flex-col lg:flex-row gap-10">
+          <section className={`category-section ${isContentLoaded ? 'loaded' : ''} flex flex-col lg:flex-row gap-10`}>
             {/* Lifestyle News */}
             <div className="flex flex-col gap-5 lg:w-1/2">
               <div className="flex justify-between items-center">
@@ -330,7 +370,9 @@ const Home = () => {
                 {filterArticlesByCategory("Lifestyle")
                   .slice(0, 2)
                   .map((article) => (
-                    <MidCard key={article.id} article={article} />
+                    <div key={article.id} className="transition-all duration-300 hover:transform hover:scale-105">
+                      <MidCard article={article} />
+                    </div>
                   ))}
               </div>
             </div>
@@ -367,13 +409,15 @@ const Home = () => {
                 {filterArticlesByCategory("Entertainment")
                   .slice(0, 2)
                   .map((article) => (
-                    <MidCard key={article.id} article={article} />
+                    <div key={article.id} className="transition-all duration-300 hover:transform hover:scale-105">
+                      <MidCard article={article} />
+                    </div>
                   ))}
               </div>
             </div>
           </section>
 
-          <section className="flex flex-col md:flex-row gap-10">
+          <section className={`category-section ${isContentLoaded ? 'loaded' : ''} flex flex-col md:flex-row gap-10`}>
             {/* Sports News */}
             <div className="flex flex-col gap-5">
               <div className="flex justify-between items-center">
@@ -404,21 +448,25 @@ const Home = () => {
                 {filterArticlesByCategory("Sports")
                   .slice(0, 6)
                   .map((article) => (
-                    <SmallCard key={article.id} article={article} />
+                    <div key={article.id} className="transition-all duration-300 hover:transform hover:scale-105">
+                      <SmallCard article={article} />
+                    </div>
                   ))}
               </div>
               <div className="grid grid-cols-1 xs:grid-cols-2 md:hidden gap-5">
                 {filterArticlesByCategory("Sports")
                   .slice(0, 4)
                   .map((article) => (
-                    <SmallCard key={article.id} article={article} />
+                    <div key={article.id} className="transition-all duration-300 hover:transform hover:scale-105">
+                      <SmallCard article={article} />
+                    </div>
                   ))}
               </div>
             </div>
           </section>
         </main>
       </div>
-    </>
+    </div>
   );
 };
 

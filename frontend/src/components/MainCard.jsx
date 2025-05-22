@@ -4,6 +4,8 @@ import { enUS } from "date-fns/locale";
 import { hi as hiBase } from "date-fns/locale";
 import useLanguage from "../context/useLanguage";
 import translations from "../utils/translation";
+import ReactMarkdown from "react-markdown";
+import { Link } from "react-router-dom";
 
 const MainCard = ({ article }) => {
   const { language } = useLanguage();
@@ -56,29 +58,36 @@ const MainCard = ({ article }) => {
       : `${timeToRead} min read`;
 
   return (
-    <div className="rounded-lg flex flex-col overflow-hidden bg-white">
-      <div className="flex flex-col justify-center !gap-4">
-        <h3 className="text-xl md:text-2xl font-medium">{title}</h3>
-        <div className="flex flex-col gap-2">
-          <p className="text-sm md:text-base text-gray-600">
-            {author} | {formattedcreatedAt}
-          </p>
-          <p className="text-sm md:text-md text-gray-600">
-            <span className="text-red-700 font-medium">
-              {translations[language][category]}
-            </span>{" "}
-            <span className="text-gray-600 hidden lg:inline"> | </span>
-            <span className="text-gray-600">{readingTimeText}</span>
-          </p>
+    <div className="flex flex-col gap-4">
+      <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden rounded-lg">
+        <img
+          src={coverImageUrl}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+        />
+      </div>
+      <div className="flex flex-col gap-2">
+        <h1 className="text-2xl md:text-3xl font-bold">{title}</h1>
+        <div className="flex items-center gap-2 text-sm text-gray-600">
+          <span>{translations[language].by}</span>
+          <span className="font-medium">{author}</span>
+          <span>•</span>
+          <span>{formattedcreatedAt}</span>
         </div>
-        <div className="">
-          <img
-            src={coverImageUrl}
-            className="w-full h-80 lg:h-128 object-cover object-center rounded-lg"
-            alt={title}
-          />
+      </div>
+      <div className="prose prose-lg max-w-none">
+        <div className="rich-text-content">
+          <ReactMarkdown>{body}</ReactMarkdown>
         </div>
-        <p className="text-base text-gray-600">{body}</p>
+      </div>
+      <div className="flex items-center gap-2 mt-4">
+        <span className="text-sm font-medium">{translations[language].category}:</span>
+        <Link
+          to={`/${category.toLowerCase()}`}
+          className="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-full transition-colors duration-200"
+        >
+          {category}
+        </Link>
       </div>
     </div>
   );
