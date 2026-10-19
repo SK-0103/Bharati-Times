@@ -125,28 +125,28 @@ Prerequisites
 
 Manual unit and functional testing covered:
 
--Admin login (valid and invalid credentials)
--Article submission and validation
--Article viewing, keyword search and category filters
--Archive flipbook loading and invalid-date handling
--Contact form validation (missing and invalid email)
--Responsive layout on mobile, tablet and resized browser windows
+- Admin login (valid and invalid credentials)
+- Article submission and validation
+- Article viewing, keyword search and category filters
+- Archive flipbook loading and invalid-date handling
+- Contact form validation (missing and invalid email)
+- Responsive layout on mobile, tablet and resized browser windows
 
 ----------------------------------------------------------------------   
 ⚠️ Current Limitations
 
--Reader registration and personalization are not yet active
--No commenting or social engagement features
--The flipbook archive depends on PDF generation and third-party viewer tooling
+- Reader registration and personalization are not yet active
+- No commenting or social engagement features
+- The flipbook archive depends on PDF generation and third-party viewer tooling
 
 ----------------------------------------------------------------------   
 🔮 Future Scope
 
--User accounts, bookmarks and personalized feeds
--Android/iOS app (React Native or Flutter)
--Push notifications for breaking news
--Comments and reactions
--SEO improvements: structured metadata, Open Graph tags, sitemap
+- User accounts, bookmarks and personalized feeds
+- Android/iOS app (React Native or Flutter)
+- Push notifications for breaking news
+- Comments and reactions
+- SEO improvements: structured metadata, Open Graph tags, sitemap
 
 
 ----------------------------------------------------------------------   
