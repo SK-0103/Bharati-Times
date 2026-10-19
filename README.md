@@ -50,14 +50,36 @@ Methodology:	Agile
 
 ----------------------------------------------------------------------
 🏗️ Architecture
-```
-┌──────────────┐    REST API     ┌─────────────────┐     ┌─────────┐
-│  React + TW  │ ─────────────▶  │  Strapi (Node)  │ ──▶ │  MySQL  │
-│  (Frontend)  │ ◀─────────────  │  Headless CMS   │ ◀── │   DB    │
-└──────────────┘                 └─────────────────┘     └─────────┘
-                                         ▲
-                                  Admin Panel (editors)
-```
+
+DATA FLOW DIAGRAM (LVL 0):
+
+<img width="1252" height="236" alt="image" src="https://github.com/user-attachments/assets/b1ac5757-1318-4a38-bf18-9d1510b8ece0" />
+
+----------------------------------------------------------------------
+
+DATA FLOW DIAGRAM (LVL 1):
+
+<img width="1028" height="658" alt="image" src="https://github.com/user-attachments/assets/38f70f5b-1c70-46bb-9e93-bc821e17eaa4" />
+
+----------------------------------------------------------------------
+
+USE CASE DIAGRAM:
+
+<img width="950" height="652" alt="image" src="https://github.com/user-attachments/assets/ebc139da-5d1c-4c61-a7d1-b8584e5f25d4" />
+
+----------------------------------------------------------------------
+
+ACTIVITY DIAGRAM: 
+
+<img width="876" height="660" alt="image" src="https://github.com/user-attachments/assets/1a972974-cb49-4f32-bf99-a66f5b881139" />
+
+----------------------------------------------------------------------
+
+ENTITY RELATIONSHIP (ER) DIAGRAM: 
+
+<img width="1002" height="651" alt="image" src="https://github.com/user-attachments/assets/1033b153-016a-4822-9e3c-ab370eab7dca" />
+
+
 ----------------------------------------------------------------------
 🚀 Getting Started
 
