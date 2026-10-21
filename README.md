@@ -12,9 +12,9 @@ Built as my MCA dissertation project at Bharati Vidyapeeth's Institute of Comput
 
 The existing Bharati Times site, built on WordPress with a traditional SQL backend, struggled with:
 
-Difficulty customizing layouts and adding new features
-Poor scalability as content and traffic grew
-An inflexible backend that was hard to maintain
+- Difficulty customizing layouts and adding new features
+- Poor scalability as content and traffic grew
+- An inflexible backend that was hard to maintain
 
 Solution: a custom stack with a React frontend, Node.js/Strapi backend and MySQL database, giving editors a simple admin panel and readers a faster, mobile-friendly experience.
 
