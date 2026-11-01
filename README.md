@@ -34,19 +34,19 @@ For readers
 
 For admins and editors (via Strapi)
 
-✍️ Create, edit and publish articles with rich text and images
-🗂️ Manage archive volumes
-📥 View and respond to contact form submissions
-🔑 Secure admin login and role-based access
+- ✍️ Create, edit and publish articles with rich text and images
+- 🗂️ Manage archive volumes
+- 📥 View and respond to contact form submissions
+- 🔑 Secure admin login and role-based access
 
 ----------------------------------------------------------------------
 🛠️ Tech Stack
 
-Frontend: 	React 18.3.1, Tailwind CSS 4.0
-Backend / CMS:	Node.js, Strapi 5.11.3 (headless CMS, REST APIs)
-Database:	MySQL
-Tools:	Git, GitHub, VS Code, Postman
-Methodology:	Agile 
+- Frontend: 	React 18.3.1, Tailwind CSS 4.0
+- Backend / CMS:	Node.js, Strapi 5.11.3 (headless CMS, REST APIs)
+- Database:	MySQL
+- Tools:	Git, GitHub, VS Code, Postman
+- Methodology:	Agile 
 
 ----------------------------------------------------------------------
 🏗️ Architecture
