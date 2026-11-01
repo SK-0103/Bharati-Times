@@ -23,14 +23,14 @@ Solution: a custom stack with a React frontend, Node.js/Strapi backend and MySQL
 
 For readers
 
-📂 Category-wise news: National, International, Technology, Business, Education, Lifestyle, Entertainment, Sports and more
-🚨 Breaking news ticker and top-stories section
-🔍 Keyword search and category filtering
-📖 Flipbook-style archive viewer for current and past newspaper editions
-🌐 Bilingual content support (English and Hindi fields)
-📬 Contact form with validation and a simple captcha
-🔐 Sign in / Sign up UI (reader accounts are disabled in the current phase)
-📱 Fully responsive across mobile, tablet and desktop
+- 📂 Category-wise news: National, International, Technology, Business, Education, Lifestyle, Entertainment, Sports and more
+- 🚨 Breaking news ticker and top-stories section
+- 🔍 Keyword search and category filtering
+- 📖 Flipbook-style archive viewer for current and past newspaper editions
+- 🌐 Bilingual content support (English and Hindi fields)
+- 📬 Contact form with validation and a simple captcha
+- 🔐 Sign in / Sign up UI (reader accounts are disabled in the current phase)
+- 📱 Fully responsive across mobile, tablet and desktop
 
 For admins and editors (via Strapi)
 
